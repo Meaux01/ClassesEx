@@ -39,12 +39,12 @@ class Chef extends Person{
 } 
 const chef1 = new Chef ('Ms. Southern', '05/24/75', 'Savannah')
 const chef2 = new Chef ('Mr. West', '02/18/80', 'New York')
-pw1.driving()
-pw2.driving()
-chef1.wave(pw1)
-chef2.breathing()
-pw2.eat()
-chef2.cooking()
+// pw1.driving()
+// pw2.driving()
+// chef1.wave(pw1)
+// chef2.breathing()
+// pw2.eat()
+// chef2.cooking()
 
 // Exercise Bank Account
 
@@ -59,26 +59,43 @@ class BankAccount {
         this.acctNum = Math.floor(Math.random()*10000000)
         return this.acctNum
     }
-    deposit(num, updateBalance){
-        console.log(`I am depositing this amount ${num}`)
+    deposit(num){
+        return this.balance += num
+        // console.log(`I am depositing this amount ${num}`)
     }
-    withdraw(num){ 
-       this.withdraw === true ? console.log(`I am withdrawing this amount ${num} from you current ${this.balance}`) : console.log('You can not withdraw from this account')
+    withdraw(amount){ 
+       this.withdraw === true ? console.log(`I am withdrawing this amount ${amount} from you current ${this.balance}`) : console.log('You can not withdraw from this account')
+       this.balance = this.balance - amount
     }
 }
 class CheckingAccount extends BankAccount{
-    withdraw (){
+    withdraw (amount){
+            this.withdraw = true
             super.withdraw()
-
+            if (amount > this.balance){
+                this.withdraw = true
+            }else if(amount <= this.balance){// overdraft feature
+                this.withdraw = true 
+                console.log(`I am withdrawing this amount ${amount} from you current ${this.balance}`)
+            }else if(amount <= this.balance){// overdraft feature
+                this.withdraw = true 
+                console.log(`I am withdrawing this amount ${amount} from you current ${this.balance}`)
         }
+}
 }
 class SavingsAccount extends BankAccount{
     withdraw (){
         this.withdraw = false
         super.withdraw()
-        
     }
 }
 console.log(BankAccount.genAcctNum())
 const ch1 = new CheckingAccount ('Bob', 2000)
+const ch2 = new CheckingAccount ('Sharen', 50)
+const sa1 = new SavingsAccount ('bob', 200)
 console.log(ch1)
+console.log(sa1)
+ch1.deposit(250)
+ch2.withdraw(250)
+sa1.withdraw()
+console.log(ch2.balance)
