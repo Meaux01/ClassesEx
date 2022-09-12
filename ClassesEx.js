@@ -77,12 +77,10 @@ class CheckingAccount extends BankAccount{
             }else if(amount <= this.balance){// overdraft feature
                 this.withdraw = true 
                 console.log(`I am withdrawing this amount ${amount} from you current ${this.balance}`)
-            }else if(amount <= this.balance){// overdraft feature
-                this.withdraw = true 
-                console.log(`I am withdrawing this amount ${amount} from you current ${this.balance}`)
+            }
         }
 }
-}
+
 class SavingsAccount extends BankAccount{
     withdraw (){
         this.withdraw = false
